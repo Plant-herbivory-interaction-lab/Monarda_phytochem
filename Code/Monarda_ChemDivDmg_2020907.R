@@ -783,7 +783,7 @@ cost3 <- ggplot(chemnew2, aes(x=Biomass_g, y=q1D, color=Chemo))+
 
 costplot <- (cost1+cost2+cost3)+
   plot_annotation(tag_levels = 'a') + plot_layout(guides='collect') & theme(legend.position='right')
-ggsave('costplot.tiff',costplot, width=12, height=3.75, units="in", dpi=600, compression = "lzw")
+ggsave('costplot.tiff',costplot, width=12, height=3.75, units="in", dpi=600, compression = "lzw", path="Outputs")
 
 mcost2 <- glmmTMB(qD~Biomass_g * Chemo + (1|Site), data=chemnew2)
 Anova(mcost2)
