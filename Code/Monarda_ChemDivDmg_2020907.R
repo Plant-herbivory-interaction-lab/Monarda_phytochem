@@ -194,6 +194,8 @@ chem1$simp[chem1$simp=='Inf'] <- NA
 plot(chem1$rich,chem1$qD)
 plot(chem1$shan,chem1$q1D)
 plot(log(chem1$total),chem1$NMDS1)
+plot(log(chem1$total),chem1$qD)
+plot(log(chem1$total),chem1$rich)
 cor.test(log(chem1$total),chem1$NMDS1)
 summary(lm(NMDS2~Chemo,data=chem1))
 
@@ -269,14 +271,15 @@ nmdsfig <- ggplot() + xlab("NMDS1")+ylab("NMDS2")+
   theme_bw(base_size = 24)
 nmdsfig
 
-## PHYTOCHEM DIVERSITY PLOT ####
+## FIGURE 1 - PHYTOCHEM DIVERSITY PLOT ####
 terpplot <- (fig1+nmdsfig)/ ((terprich+terpshan) + plot_layout(guides='collect')) +
   plot_annotation(tag_levels = 'a') #+ plot_layout(guides='collect') & theme(legend.position='top')
 ggsave('terpplot.tiff',terpplot, width=15, height=12, units="in", dpi=600, compression = "lzw", path="Outputs")
 
 
 ### analysis for chem diversity ####
-ter1 <- glmmTMB(total ~ Region * Chemo + (1|Site), data=chem1, family=lognormal)
+ter1 <- glmmTMB(total ~ Region * Chemo + (1|Site), data=chem1, family=gaussian(link="sqrt"))
+#ter1 <- glmmTMB(sqrt(total) ~ Region * Chemo + (1|Site), data=chem1, family=gaussian(link="identity"))
 Anova(ter1)
 r.squaredGLMM(ter1)
 simulateResiduals(ter1, plot=T)
@@ -375,7 +378,7 @@ summary(clm_mods)
 clm_avg <- model.avg(clm_mods)
 summary(clm_avg)
 
-## get p-values
+## get p-values from models with non-positive definate hessian matrix
 clm1b2 <- glmmTMB(leaf_dmgp1~total+(1|Site), data=chemnew1, family=beta_family)
 clm1f2 <- glmmTMB(leaf_dmgp1~Region+total+(1|Site), data=chemnew1, family=beta_family)
 
@@ -726,6 +729,14 @@ plot(smar2)
 plot(smar2, which="residual")
 plot(smar2, which="qq")
 
+### test correlations within regions
+smar2r <- sma(qD~Biomass_g*Region, data=chemnew2 , type="shift")
+smar2r
+summary(smar2r)
+plot(smar2r)
+plot(smar2r, which="residual")
+plot(smar2r, which="qq")
+
 
 ### SMATR for shannon ####
 smas1 <- sma(q1D~Biomass_g, data=chemnew2 )
@@ -742,7 +753,13 @@ plot(smas2)
 plot(smas2, which="residual")
 plot(smas2, which="qq")
 
-
+### test correlations within regions
+smas2r <- sma(q1D~Biomass_g*Region, data=chemnew2 , type="shift")
+smas2r
+summary(smas2r)
+plot(smas2r)
+plot(smas2r, which="residual")
+plot(smas2r, which="qq")
 
 ## extract model coefficients to make figure
 smap2 <- pop1a
@@ -762,28 +779,28 @@ cost1 <- ggplot()+
 
 cost2 <- ggplot()+
   geom_smooth(data=chemnew2, aes(x=Biomass_g, y=qD), color="black", method="lm", linetype="dashed")+
-  geom_point(data=chemnew2, aes(x=Biomass_g, y=qD, color=Chemo), size=4)+
+  geom_point(data=chemnew2, aes(x=Biomass_g, y=qD, color=Chemo, shape=Region), size=4)+
   scale_x_continuous("Plant biomass (g)")+
   scale_y_continuous(name='Terpene richness')+
-  scale_color_manual(values=c("#A73030FF", "#4A6990FF"))+
   scale_color_manual(values=c("#A73030FF", "#4A6990FF"))+
   scale_shape(name="Origin")+
   theme_bw(base_size = 20)
 
-cost3 <- ggplot(chemnew2, aes(x=Biomass_g, y=q1D, color=Chemo))+
-  geom_smooth(method="lm", linetype="dashed")+
-  geom_point(size=4)+
+cost3 <- ggplot()+
+  geom_smooth(data=chemnew2, aes(x=Biomass_g, y=q1D), color="black", method="lm", linetype="dashed")+
+  geom_point(data=chemnew2, aes(x=Biomass_g, y=q1D, color=Chemo, shape=Region), size=4)+
   scale_x_continuous("Plant biomass (g)")+
   scale_y_continuous(name='Terpene shannon')+
   scale_color_manual(values=c("#A73030FF", "#4A6990FF"))+
-  scale_color_manual(values=c("#A73030FF", "#4A6990FF"))+
+  #scale_color_manual(values=c("#A73030FF", "#4A6990FF"))+
   scale_shape(name="Origin")+
   theme_bw(base_size = 20)+
   guides(color="none")
+
 
 costplot <- (cost1+cost2+cost3)+
   plot_annotation(tag_levels = 'a') + plot_layout(guides='collect') & theme(legend.position='right')
 ggsave('costplot.tiff',costplot, width=12, height=3.75, units="in", dpi=600, compression = "lzw", path="Outputs")
 
-mcost2 <- glmmTMB(qD~Biomass_g * Chemo + (1|Site), data=chemnew2)
+mcost2 <- glmmTMB(qD~Biomass_g * Chemo * Region + (1|Site), data=chemnew2)
 Anova(mcost2)
