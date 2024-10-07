@@ -144,6 +144,30 @@ fig1supp <- ggplot(chem2plotsupp , aes(fill=compound, x=as.factor(Site), y=sqrt(
 fig1supp
 ggsave('fig1supp.tiff',fig1supp, width=15, height=12, units="in", dpi=600, compression = "lzw", path="Outputs")
 
+## figure by indivdual plant
+chem2plotsupp2 <- chem2 %>%  
+  mutate(compound=if_else(chemical=="a_thujene"|chemical=="myrcene"|chemical=="octen_3_ol"|chemical=="a_terpinene"|chemical=="gama_terpinene"|
+                            chemical=="p_cymene"|chemical=="thymoquinone"|chemical=="carvacrol"|chemical=="thymol", chemical, "other"), 
+         compound=as.factor(compound)) %>% 
+  ungroup() %>% 
+  mutate(compound=fct_relevel(compound, c("other","a_thujene","myrcene","octen_3_ol","a_terpinene","gama_terpinene",
+                                          "p_cymene","thymoquinone","carvacrol","thymol")))%>% 
+  group_by(Region,Chemo,Site,Plant,Rep,compound) %>% summarize(conc=mean(conc, na.rm=T))
+
+fig1supp2 <- ggplot(chem2plotsupp2 , aes(fill=compound, x=as.factor(paste(Plant,Rep)), y=sqrt(conc))) + 
+  geom_bar(position="stack",stat="identity")+
+  #facet_wrap(~Season) + 
+  #scale_fill_viridis(discrete=T,labels=c('Other','α-Thujene','Myrcene','Octen-3-ol','α-Terpinene', 'γ-Terpinene',
+  #                                      'p-Cymene','Thymoquinone','Carvacrol','Thymol'), name="Compound")+
+  scale_fill_jco(labels=c('Other','α-Thujene','Myrcene','Octen-3-ol','α-Terpinene', 'γ-Terpinene',
+                          'p-Cymene','Thymoquinone','Carvacrol','Thymol'), name="Compound")+
+  #ggtitle("B")+
+  xlab('Plant ID')+ ylab('Terpene concentration (sqrt(mg/g))')+
+  theme_bw(base_size = 16)+
+  facet_wrap(~Site, scales="free_x")+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+fig1supp2
+ggsave('fig1supp2.tiff',fig1supp2, width=18, height=15, units="in", dpi=600, compression = "lzw", path="Outputs")
+
 ### distance by space and chemistry -- just to check ####
 chem2dist <- chem2 %>% 
   full_join(.,sites) %>% 
@@ -273,8 +297,9 @@ nmdsfig
 
 ## FIGURE 1 - PHYTOCHEM DIVERSITY PLOT ####
 terpplot <- (fig1+nmdsfig)/ ((terprich+terpshan) + plot_layout(guides='collect')) +
-  plot_annotation(tag_levels = 'a') #+ plot_layout(guides='collect') & theme(legend.position='top')
-ggsave('terpplot.tiff',terpplot, width=15, height=12, units="in", dpi=600, compression = "lzw", path="Outputs")
+  plot_annotation(tag_levels = list(c('(a)','(b)','(c)','(d)'))) & 
+  theme(plot.tag.location = 'panel', plot.tag.position = c(.075,.95)) #+ plot_layout(guides='collect') & theme(legend.position='top')
+ggsave('Figure1.tiff',terpplot, width=15, height=12, units="in", dpi=600, compression = "lzw", path="Outputs")
 
 
 ### analysis for chem diversity ####
@@ -651,10 +676,12 @@ ph1plot <- ph1+ph1x+plot_layout(design=layoutph1)
 
 
 # Damage PLOT ####
-pdmg1 <- (ph1+pd1plot)/(pa1a+pg3plot) + plot_layout(guides = 'collect')
+pdmg1 <- (ph1+pd1plot)/(pa1a+pg3plot) + plot_layout(guides = 'collect', tag_level = "keep") + 
+  plot_annotation(tag_levels = list(c('(a)','(b)','','(c)','(d)',''))) & 
+  theme(plot.tag.location = 'panel', plot.tag.position = c(.075,.9))
 #pdmg1 <- (pd1a+ph1)/(pg3+pa1a) + plot_layout(guides = 'collect')
 
-ggsave('herbfig_new.tiff',pdmg1, width=12, height=8, units="in", dpi=600, compression='lzw', path="Outputs")
+ggsave('Figure2.tiff',pdmg1, width=12, height=8, units="in", dpi=600, compression='lzw', path="Outputs")
 
 
 
@@ -762,7 +789,7 @@ plot(smas2r, which="residual")
 plot(smas2r, which="qq")
 
 ## extract model coefficients to make figure
-smap2 <- pop1a
+smap2 <- chemnew2
 smap2$y1 <- exp(coef(sma1)[1]+smap2$Biomass_g*coef(sma1)[2]) 
 smap2$yMT <- exp(coef(sma2)[1,1]+smap2$Biomass_g*coef(sma2)[1,2]) 
 smap2$yWI <- exp(coef(sma2)[2,1]+smap2$Biomass_g*coef(sma2)[2,2]) 
@@ -799,8 +826,13 @@ cost3 <- ggplot()+
 
 
 costplot <- (cost1+cost2+cost3)+
-  plot_annotation(tag_levels = 'a') + plot_layout(guides='collect') & theme(legend.position='right')
-ggsave('costplot.tiff',costplot, width=12, height=3.75, units="in", dpi=600, compression = "lzw", path="Outputs")
+  plot_layout(guides = 'collect', tag_level = "keep") + 
+  plot_annotation(tag_levels = list(c('(a)','(b)','(c)'))) & 
+  theme(plot.tag.location = 'panel', plot.tag.position = c(.15,.95), legend.position='right')
+
+ggsave('Figure3.tiff',costplot, width=12, height=3.75, units="in", dpi=600, compression = "lzw", path="Outputs")
+
+
 
 mcost2 <- glmmTMB(qD~Biomass_g * Chemo * Region + (1|Site), data=chemnew2)
 Anova(mcost2)
