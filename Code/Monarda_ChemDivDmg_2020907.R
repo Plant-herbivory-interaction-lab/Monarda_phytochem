@@ -299,7 +299,7 @@ nmdsfig
 terpplot <- (fig1+nmdsfig)/ ((terprich+terpshan) + plot_layout(guides='collect')) +
   plot_annotation(tag_levels = list(c('(a)','(b)','(c)','(d)'))) & 
   theme(plot.tag.location = 'panel', plot.tag.position = c(.075,.95)) #+ plot_layout(guides='collect') & theme(legend.position='top')
-ggsave('Figure1.tiff',terpplot, width=15, height=12, units="in", dpi=600, compression = "lzw", path="Outputs")
+ggsave('Figure1.tiff',terpplot, width=15, height=12, units="in", dpi=450, compression = "lzw", path="Outputs")
 
 
 ### analysis for chem diversity ####
@@ -814,7 +814,7 @@ cost2 <- ggplot()+
   theme_bw(base_size = 20)
 
 cost3 <- ggplot()+
-  geom_smooth(data=chemnew2, aes(x=Biomass_g, y=q1D), color="black", method="lm", linetype="dashed")+
+  geom_smooth(data=chemnew2, aes(x=Biomass_g, y=q1D, color=Chemo), method="lm", linetype="dashed")+
   geom_point(data=chemnew2, aes(x=Biomass_g, y=q1D, color=Chemo, shape=Region), size=4)+
   scale_x_continuous("Plant biomass (g)")+
   scale_y_continuous(name='Terpene shannon')+
@@ -831,6 +831,13 @@ costplot <- (cost1+cost2+cost3)+
   theme(plot.tag.location = 'panel', plot.tag.position = c(.15,.95), legend.position='right')
 
 ggsave('Figure3.tiff',costplot, width=12, height=3.75, units="in", dpi=600, compression = "lzw", path="Outputs")
+
+costplott <- (cost1/cost2/cost3)+
+  plot_layout(guides = 'collect', tag_level = "keep") + 
+  plot_annotation(tag_levels = list(c('(a)','(b)','(c)'))) & 
+  theme(plot.tag.location = 'panel', plot.tag.position = c(.1,.95), legend.position='top')
+
+ggsave('Figure3tall.tiff',costplott, width=6, height=12, units="in", dpi=600, compression = "lzw", path="Outputs")
 
 
 
