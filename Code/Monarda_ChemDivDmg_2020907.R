@@ -164,7 +164,7 @@ fig1supp2 <- ggplot(chem2plotsupp2 , aes(fill=compound, x=as.factor(paste(Plant,
   #ggtitle("B")+
   xlab('Plant ID')+ ylab('Terpene concentration (sqrt(mg/g))')+
   theme_bw(base_size = 16)+
-  facet_wrap(~Site, scales="free_x")+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+  facet_wrap(~paste(Region,Site), scales="free_x")+ theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
 fig1supp2
 ggsave('fig1supp2.tiff',fig1supp2, width=18, height=15, units="in", dpi=600, compression = "lzw", path="Outputs")
 
