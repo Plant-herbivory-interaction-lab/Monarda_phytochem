@@ -1,4 +1,10 @@
 # Calixto et al. Oikos Monarda phytochemistry paper
+Repo for Monarda fistulosa phytochemistry and herbivory common garden project. The common garden experiment was located in Wisconsin, USA using seeds collected from M. fistulosa populations originating from Montana, USA and Wisconsin, USA. 
+Contact Phil Hahn (hahnp@ufl.edu) with any questions. This manuscript has been accepted for publication (10/21/2024): 
+
+Calixto, E.S., J.L. Maron, K. Keefover-Ring, J.H. Cammarano, and P.G. Hahn. Phytochemical diversity increases with resources availability but has mixed effects on herbivory. Oikos (accepted). 10.1111/oik.10914
+
+
 Data files include:
 
 ## Monarda_Garden_Traits_2019.csv
@@ -6,8 +12,8 @@ This file contains data on monarda leaf traits and phytochemistry.
 
 | variables | units | description |
 | :--- | :---: | :--- |
-| Region | categorical | MT = Montana, WI = Wisconsin |
-| Site | categorical | Code for site location, see Table S1 for more details about locations | 
+| Region | categorical | Geographical region, MT = Montana, WI = Wisconsin |
+| Site | categorical | Code for site location, see file 'WIMT_Sites_2019.csv' or Table S1 for more details about locations | 
 | Plant | number | numerical code for each maternal plant for where seed was collected |
 | Rep | categorical | A-E, code for indivdual plants grown from the maternal plant ID (ie. half siblings) |
 | Row | number | row in common garden, used to locate plants in the garden |
@@ -52,9 +58,52 @@ This file contains data on monarda leaf traits and phytochemistry.
 ## MonardaGarden_Data2021.csv 
 This file contains data on Monarda plant measurements in the field.
 
+| variables | units | description |
+| :--- | :---: | :--- |
+| Region      |    categorical     | Geographical region, MT = Montana, WI = Wisconsin  |
+| Site        |    categorical     | Code for site location, see file 'WIMT_Sites_2019.csv' or Table S1 for more details about locations   |
+| Plant       |    number     | Identifier for plant sample          |
+| Rep         |   number      | Replication number                   |
+| Row         |   number      | Row position in the field            |
+| Order       |    number     | order planted in garden, used to locate plants in the garden  |
+| hg_Tallest  |    cm   | Height of the tallest plant part     |
+| volD1       |   cm    | Diameter of plant at widest point, used to estimate volume     |
+| volD2       |   cm    | Diameter of plant orthogonal to volD1, used to estimate volume |
+| b           |  presence  | Presence (1) or absence (0) of buds  |
+| fl          |  presence  | Presence (1) or absence (0) of flowers                    |
+| fr          |  presence  | Presence (1) or absence (0) of fruits                     |
+| infl        |  count  | Number of inflorescences             |
+| ch          |    %    | Percent of chewing damage estimated on whole plant            |
+| prc         |    %    | Percent of piercing/sucking damage estimated on whole plant |
+| notes       |         | Additional notes or observations     |
+
 
 ## MonardaGarden_SeedDamage2021 (5).csv 
 This file contains data on seed head damage to Monarda plants in the common garden.
+
+| variables | units | description |
+| :--- | :---: | :--- |
+| Region     |    categorical     | Geographical region, MT = Montana, WI = Wisconsin   |
+| Site       |    categorical     | Code for site location, see file 'WIMT_Sites_2019.csv' or Table S1 for more details about locations   |
+| Plant      |    number     | Identifier for plant sample           |
+| Rep        |    number     | Replication number                    |
+| Row        |     number    | Row position in the field             |
+| Flowered   |  Presence | Whether the plant flowered            |
+| HeadSize   |   cm    | Size of the flower head               |
+| HeadMass   |    g    | Mass of the flower head               |
+| N_tubes    |  count  | Number of tubes                       |
+| HerbDmg    |    %    | Percentage of herbivory damage        |
+| Col_grub   |  count  | Number of Coleoptera grubs            |
+| Lep_grub   |  count  | Number of Lepidoptera grubs           |
+| Lep_Phy    |  count  | Number of Phytophagous Lepidoptera    |
+| Fly        |  count  | Number of flies                       |
+| Unknwn     |  count  | Number of unknown organisms           |
+| Seeds_No   |  count  | Number of seeds                       |
+| Seed_wt    |    g    | Weight of the seeds                   |
+| Notes      |         | Additional notes or observations      |
+| DateP      |  Date   | Date of the recorded measurement      |
+
+
 
 ## MonardaGarden2020.csv
 This file contains data collected in the common garden site in Wisconsin in the summer of 2020.
@@ -62,7 +111,7 @@ This file contains data collected in the common garden site in Wisconsin in the 
 | variables | units | description |
 | :--- | :---: | :--- |
 | Region | categorical | MT = Montana, WI = Wisconsin |
-| Site | categorical | Code for site location, see Table S1 for more details about locations | 
+| Site | categorical | Code for site location, see file 'WIMT_Sites_2019.csv' or Table S1 for more details about locations  | 
 | Plant | number | numerical code for each maternal plant for where seed was collected |
 | Rep | categorical | A-E, code for indivdual plants grown from the maternal plant ID (ie. half siblings) |
 | Row | number | row in common garden, used to locate plants in the garden |
@@ -100,10 +149,24 @@ This file contains data collected in the common garden site in Wisconsin in the 
 | agromyzid | count | number of agromyzid flies on plant |	
 
 
-
-## WIMT_Monarda_HgtDmg_09192018.csv 
-Field data not used in this study (remove from repo?)
-
-
 ## WIMT_Sites_2019.csv 
 This file contains information on site characteristics for locations where seed was originally collected.
+
+| variables | units | description |
+| :--- | :---: | :--- |
+| Region     |     categorical    | Geographical region, MT = Montana, WI = Wisconsin                  |
+| Site       |     categorical    | Code for site location  |
+| Lat        |  degrees | Latitude coordinate                  |
+| Long       |  degrees | Longitude coordinate                 |
+| pH         |         | Soil pH level                        |
+| orgmat     |    %    | Organic matter content               |
+| nit        |    %    | Nitrogen content                     |
+| K          |    %    | Potassium content                    |
+| cec        |  meq/100g | Cation exchange capacity            |
+| P          |    %    | Phosphorus content                   |
+| mat1       |     cm    | bioclim1, mean annual precipitation    |
+| iso3       |         | bioclim3, isothermatic               |
+| tsd4       |         | bioclim4, standard deviation of monthly temperatures  |
+| map12      |  mm/year | bioclim12, Mean annual precipitation |
+| pwrq18     |         | bioclim18, precipication in the warmest quarter      |
+

@@ -25,12 +25,10 @@ library(geodist)
 
 # load data ####
 trait <- read_csv("Data/Monarda_Garden_Traits_2019.csv")
-dmg19 <- read_csv("Data/WIMT_Monarda_HgtDmg_09192018.csv")
 sites <- read_csv("Data/WIMT_Sites_2019.csv")
 
 head(trait)
 head(sites)
-head(dmg19)
 
 # productivity ####
 sitesnpp <- sites %>% filter(Site!='PET',Site!='BRP',Site!='GRE',Site!='BRS',Site!='FAV',Site!='TMP')
