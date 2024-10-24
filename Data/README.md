@@ -164,9 +164,9 @@ This file contains information on site characteristics for locations where seed 
 | K          |    %    | Potassium content                    |
 | cec        |  meq/100g | Cation exchange capacity            |
 | P          |    %    | Phosphorus content                   |
-| mat1       |     cm    | bioclim1, mean annual precipitation    |
-| iso3       |         | bioclim3, isothermatic               |
+| mat1       |    degrees C     | bioclim1, mean annual temperature    |
+| iso3       |         | bioclim3, isothermality               |
 | tsd4       |         | bioclim4, standard deviation of monthly temperatures  |
-| map12      |  mm/year | bioclim12, Mean annual precipitation |
+| map12      |  cm/year | bioclim12, Mean annual precipitation |
 | pwrq18     |         | bioclim18, precipication in the warmest quarter      |
 
