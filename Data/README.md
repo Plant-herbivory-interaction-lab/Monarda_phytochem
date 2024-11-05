@@ -1,14 +1,15 @@
-# Calixto et al. Oikos Monarda phytochemistry paper
-Repo for Monarda fistulosa phytochemistry and herbivory common garden project. The common garden experiment was located in Wisconsin, USA using seeds collected from M. fistulosa populations originating from Montana, USA and Wisconsin, USA. Chemistry was conducted on leaves to measure terpenes and herbivory was measured on the same plants.
+# Intraspecific phytochemical diversity increases with resources availability but has mixed effects on herbivory
+Data for Monarda fistulosa phytochemistry and herbivory common garden project. The common garden experiment was located in Wisconsin, USA using seeds collected from M. fistulosa populations originating from Montana, USA and Wisconsin, USA. Chemistry was conducted on leaves to measure terpenes and herbivory was measured on the same plants.
 Contact Phil Hahn (hahnp@ufl.edu) with any questions. This manuscript has been accepted for publication (10/21/2024): 
 
-Calixto, E.S., J.L. Maron, K. Keefover-Ring, J.H. Cammarano, and P.G. Hahn. Phytochemical diversity increases with resources availability but has mixed effects on herbivory. Oikos (accepted). 10.1111/oik.10914
+Calixto, E.S., J.L. Maron, K. Keefover-Ring, J.H. Cammarano, and P.G. Hahn. Intraspecific phytochemical diversity increases with resources availability but has mixed effects on herbivory. Oikos (accepted). 10.1111/oik.10914
 
 
 Data files include:
 
 ## Monarda_Garden_Traits_2019.csv
-This file contains data on monarda leaf traits and phytochemistry.
+
+This file contains data on Monarda fistulosa leaf traits and phytochemistry. All data were collected by the authors. Blank cells represent missing data.
 
 | variables | units | description |
 | :--- | :---: | :--- |
@@ -56,7 +57,7 @@ This file contains data on monarda leaf traits and phytochemistry.
 
 
 ## MonardaGarden_Data2021.csv 
-This file contains data on Monarda plant measurements in the field.
+This file contains data on Monarda plant measurements in the field. All data were collected by the authors. Blank cells represent missing data.
 
 | variables | units | description |
 | :--- | :---: | :--- |
@@ -79,7 +80,7 @@ This file contains data on Monarda plant measurements in the field.
 
 
 ## MonardaGarden_SeedDamage2021 (5).csv 
-This file contains data on seed head damage to Monarda plants in the common garden.
+This file contains data on seed head damage to Monarda plants in the common garden. All data were collected by the authors. Blank cells represent missing data.
 
 | variables | units | description |
 | :--- | :---: | :--- |
@@ -106,7 +107,7 @@ This file contains data on seed head damage to Monarda plants in the common gard
 
 
 ## MonardaGarden2020.csv
-This file contains data collected in the common garden site in Wisconsin in the summer of 2020.
+This file contains data collected in the common garden site in Wisconsin in the summer of 2020. All data were collected by the authors. Blank cells represent missing data.
 
 | variables | units | description |
 | :--- | :---: | :--- |
@@ -150,7 +151,7 @@ This file contains data collected in the common garden site in Wisconsin in the 
 
 
 ## WIMT_Sites_2019.csv 
-This file contains information on site characteristics for locations where seed was originally collected.
+This file contains information on site characteristics for locations where seed was originally collected. Soil data were obtain from: 10.5061/dryad.x0k6djhjq. Variables indicated as bioclim variables were obtained from: https://www.worldclim.org/data/bioclim.html. Blank cells represent missing data.
 
 | variables | units | description |
 | :--- | :---: | :--- |
