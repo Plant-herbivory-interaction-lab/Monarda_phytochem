@@ -1,15 +1,19 @@
 # Intraspecific phytochemical diversity increases with resources availability but has mixed effects on herbivory
 Data for Monarda fistulosa phytochemistry and herbivory common garden project. The common garden experiment was located in Wisconsin, USA using seeds collected from M. fistulosa populations originating from Montana, USA and Wisconsin, USA. Chemistry was conducted on leaves to measure terpenes and herbivory was measured on the same plants.
+
 Contact Phil Hahn (hahnp@ufl.edu) with any questions. This manuscript has been accepted for publication (10/21/2024): 
 
 Calixto, E.S., J.L. Maron, K. Keefover-Ring, J.H. Cammarano, and P.G. Hahn. Intraspecific phytochemical diversity increases with resources availability but has mixed effects on herbivory. Oikos (accepted). 10.1111/oik.10914
 
+R scripts associated with these data files can be found here: https://doi.org/10.5281/zenodo.13988961
+
+Additional information in the supplemental materials (Table S1 and S2) can be found here: https://doi.org/10.5281/zenodo.13988963.
 
 Data files include:
 
 ## Monarda_Garden_Traits_2019.csv
 
-This file contains data on Monarda fistulosa leaf traits and phytochemistry. All data were collected by the authors. Blank cells represent missing data.
+This file contains data on Monarda fistulosa leaf traits and phytochemistry. All data were collected by the authors. Blank cells represent missing data. 
 
 | variables | units | description |
 | :--- | :---: | :--- |
