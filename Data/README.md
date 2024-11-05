@@ -7,8 +7,6 @@ Calixto, E.S., J.L. Maron, K. Keefover-Ring, J.H. Cammarano, and P.G. Hahn. Intr
 
 R scripts associated with these data files can be found here: https://doi.org/10.5281/zenodo.13988961
 
-Additional information in the supplemental materials (Table S1 and S2) can be found here: https://doi.org/10.5281/zenodo.13988963.
-
 Data files include:
 
 ## Monarda_Garden_Traits_2019.csv
