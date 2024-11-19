@@ -5,7 +5,7 @@ Contact Phil Hahn (hahnp@ufl.edu) with any questions. This manuscript has been a
 
 Calixto, E.S., J.L. Maron, K. Keefover-Ring, J.H. Cammarano, and P.G. Hahn. Intraspecific phytochemical diversity increases with resources availability but has mixed effects on herbivory. Oikos (accepted). 10.1111/oik.10914
 
-R scripts associated with these data files can be found here: https://doi.org/10.5281/zenodo.13988961
+R scripts (file: Monarda_ChemDivDmg_2020907.R) associated with these data files can be found here: https://doi.org/10.5281/zenodo.13988961
 
 Data files include:
 
